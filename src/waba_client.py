@@ -64,7 +64,12 @@ class WabaClient(BaseApiClient):
             'Authorization': 'Bearer %s' % access_token,
         }
 
-    def get_message_templates(self):
+    def get_message_template(self, template_id):
+        url = urljoin(self.base_url, f'{template_id}')
+        resp = self.get(url)
+        return resp
+
+    def list_message_templates(self):
         url = urljoin(self.base_url, f'{self.waba_id}/message_templates/')
         resp = self.get(url)
         return resp
